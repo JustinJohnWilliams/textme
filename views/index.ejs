@@ -1,0 +1,32 @@
+<!--
+  render whatever is in header.ejs
+-->
+<% include header %>
+
+<!--
+  application specific javascript files
+  visit each file for more information on what these doe
+-->
+<script src="/public/app/ngEnter.js"></script>
+<script src="/public/app/index.js"></script>
+
+<!--
+  main container for the app
+  ng-app and ng-controller are "entry points" for angularjs
+  view the /public/app/index.js for the controller
+  implementation
+-->
+<div id="dashboard" ng-app="App" ng-controller="AppCtrl">
+  <input type="text" placeholder="name" ng-model="name" />
+  <input type="text" placeholder="number" ng-model="number" />
+  <input type="button" ng-click="checkin()" name="checkin" class="btn" value="check in" />
+  <hr />
+  <div ng-repeat="customer in customers">
+    {{ customer.name }} - {{ customer.number }}
+    <input type="text" placeholder="waiter number" ng-model="customer.waiterNumber" />
+    <input type="button" value="check in" class="btn btn-primary" ng-click="tableReady(customer)" />
+  </div>
+</div>
+
+<!-- render whatever is in footer.ejs -->
+<% include footer %>
